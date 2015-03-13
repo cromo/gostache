@@ -1,10 +1,10 @@
-# Gostashe
+# Gostache
 
 A Go implementation of the command line [mustache(1)](http://mustache.github.io/mustache.1.html) program.
 
 ## Overview
 
-Gostashe is a substitute for the command line mustashe processor from the original mustache project, which is written in Ruby. Gostashe is for those who don't want to or can't install Ruby for whatever reason to be able to use the same command line interface for rendering templates wrapped up in a portable Go binary.
+Gostache is a substitute for the command line mustashe processor from the original mustache project, which is written in Ruby. Gostache is for those who don't want to or can't install Ruby for whatever reason to be able to use the same command line interface for rendering templates wrapped up in a portable Go binary.
 
 ## Documentation
 
