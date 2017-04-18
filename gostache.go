@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"code.google.com/p/go.crypto/ssh/terminal"
+	"github.com/artyom/isterm"
 	"github.com/hoisie/mustache"
 	"launchpad.net/goyaml"
 )
@@ -42,7 +42,7 @@ func argumentsContain(value string) bool {
 }
 
 func isTerminal(file *os.File) bool {
-	return terminal.IsTerminal(int(file.Fd()))
+	return isterm.IsTerminal()
 }
 
 func noFilesPassed() bool {
