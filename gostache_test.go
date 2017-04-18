@@ -18,7 +18,16 @@ names: [ {name: chris}, {name: mark}, {name: scott} ]
 {{/names}}`, []string{`  Hi chris!
   Hi mark!
   Hi scott!
-`}},
+`}}, {
+			`---
+name: chris
+---
+name: mark
+---
+name: scott
+---
+Hi {{name}}!
+`, []string{"Hi chris!\n", "Hi mark!\n", "Hi scott!\n"}},
 	}
 	for _, c := range cases {
 		template, data := splitTemplateAndData(c.in)
