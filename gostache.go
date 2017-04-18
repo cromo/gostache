@@ -25,7 +25,10 @@ func main() {
 	files := getFileList()
 	input := concatContents(files)
 	template, data := splitTemplateAndData(input)
-	renderTemplateWithData(template, data)
+	renders := renderTemplateWithData(template, data)
+	for _, output := range renders {
+		fmt.Printf(output)
+	}
 }
 
 func passedHelpArgument() bool {
@@ -117,20 +120,22 @@ func splitYamlDocuments(yaml string) []string {
 	return r.Split(yaml, 5)
 }
 
-func renderTemplateWithData(template string, data []string) {
+func renderTemplateWithData(template string, data []string) []string {
 	t, err := mustache.ParseString(template)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error parsing mustache template: %s\n", err.Error())
 		os.Exit(1)
 	}
+	rendered := make([]string, len(data))
 	for i, yaml := range data {
 		deserialized, err := deserializeYaml(yaml)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error parsing YAML blob %d: %s\n", i, err.Error())
 			os.Exit(1)
 		}
-		fmt.Printf(t.Render(deserialized))
+		rendered[i] = t.Render(deserialized)
 	}
+	return rendered
 }
 
 func deserializeYaml(yaml string) (map[string]interface{}, error) {
